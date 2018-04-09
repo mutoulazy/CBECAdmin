@@ -6,7 +6,9 @@ import java.util.List;
 import net.sppan.base.config.intercepter.CommonIntercepter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -18,6 +20,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
+
+import javax.servlet.MultipartConfigElement;
 
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
@@ -76,7 +80,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(commonIntercepter).addPathPatterns("/**");
 		super.addInterceptors(registry);
 	}
-	
+
+
     @Bean
     public FilterRegistrationBean registFilter() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
@@ -85,6 +90,4 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         registration.setOrder(1);
         return registration;
     }
-	
-	
 }
