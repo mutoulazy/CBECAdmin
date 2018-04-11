@@ -93,6 +93,38 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa fa-cog"></i>
+                            <span class="nav-label">招聘管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/subject/index">机构信息管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/role/index">招聘计划</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/role/index">招聘计划审核</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa fa-cog"></i>
+                            <span class="nav-label">科研成果</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/subject/index">科研成果分享</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="line dk"></li>
                 </ul>
             </div>
