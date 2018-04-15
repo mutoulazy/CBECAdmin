@@ -34,7 +34,7 @@ public class RecruitServiceImpl extends BaseServiceImpl<Recruit, Integer> implem
             Recruit dbRecruit = find(recruit.getId());
             dbRecruit.setUpdateTime(new Date());
             dbRecruit.setEndTime(recruit.getEndTime());
-            dbRecruit.setTitle(recruit.getTitle());
+            dbRecruit.setName(recruit.getName());
             dbRecruit.setReview(recruit.getReview());
             dbRecruit.setRequest(recruit.getRequest());
             dbRecruit.setPeopleCount(recruit.getPeopleCount());

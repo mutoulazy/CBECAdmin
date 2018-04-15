@@ -33,7 +33,7 @@ public class EnterpriseServiceImpl extends BaseServiceImpl<Enterprise, Integer> 
         if(enterprise.getId() != null){
             Enterprise dbEnterprise = find(enterprise.getId());
             dbEnterprise.setUpdateTime(new Date());
-            dbEnterprise.setFullName(enterprise.getFullName());
+            dbEnterprise.setName(enterprise.getName());
             dbEnterprise.setShrotName(enterprise.getShrotName());
             dbEnterprise.setType(enterprise.getType());
             dbEnterprise.setNature(enterprise.getNature());

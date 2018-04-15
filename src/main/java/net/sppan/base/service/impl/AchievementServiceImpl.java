@@ -34,7 +34,7 @@ public class AchievementServiceImpl extends BaseServiceImpl<Achievement, Integer
             dbAchievement.setIsHide(achievement.getIsHide());
             dbAchievement.setDescription(achievement.getDescription());
             dbAchievement.setUpdateTime(new Date());
-            dbAchievement.setTitle(achievement.getTitle());
+            dbAchievement.setName(achievement.getName());
             dbAchievement.setImage(achievement.getImage());
             dbAchievement.setResource(achievement.getResource());
             dbAchievement.setIntroduction(achievement.getIntroduction());

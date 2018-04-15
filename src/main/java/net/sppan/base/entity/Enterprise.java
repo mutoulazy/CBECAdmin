@@ -27,7 +27,7 @@ public class Enterprise extends BaseEntity{
     /**
      * 企业全称
      */
-    private String fullName;
+    private String name;
 
     /**
      * 企业短称
@@ -116,12 +116,12 @@ public class Enterprise extends BaseEntity{
         this.id = id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getShrotName() {

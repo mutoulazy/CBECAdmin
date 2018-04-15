@@ -26,7 +26,7 @@ public class Recruit extends BaseEntity{
     /**
      * 招聘标题名称
      */
-    private String title;
+    private String name;
 
     /**
      * 招聘截止时间
@@ -103,12 +103,12 @@ public class Recruit extends BaseEntity{
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Date getEndTime() {
