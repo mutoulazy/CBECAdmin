@@ -1,7 +1,8 @@
 package net.sppan.base.controller.admin;
 
 import net.sppan.base.common.JsonResult;
-import net.sppan.base.common.utils.FileUtils;
+import net.sppan.base.common.utils.FtpUtils;
+import net.sppan.base.common.utils.UUIDUtils;
 import net.sppan.base.controller.BaseController;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.List;
 
@@ -22,8 +25,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/file")
 public class FileController extends BaseController {
-    @Value("${img.location}")
-    private String location;
+    @Value("${FTP_ADDRESS}")
+    private String FTP_ADDRESS;
+    @Value("${FTP_PORT}")
+    private int FTP_PORT;
+    @Value("${FTP_USERNAME}")
+    private String FTP_USERNAME;
+    @Value("${FTP_PASSWORD}")
+    private String FTP_PASSWORD;
+    @Value("${FTP_PRODUCTION_IMAGE_BASEPATH}")
+    private String FTP_PRODUCTION_IMAGE_BASEPATH;
 
     @RequestMapping("/uploadTest")
     public String test(){
@@ -39,18 +50,35 @@ public class FileController extends BaseController {
      */
     @PostMapping("/upload")
     @ResponseBody
-    public JsonResult upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+    public JsonResult upload(@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpSession session) {
         if (!file.isEmpty()) {
-            String contentType = file.getContentType();
+            // 上传时的文件名
             String fileName = file.getOriginalFilename();
-            String filePath = location;
+            InputStream inputStream = null;
+            try {
+                inputStream = file.getInputStream();
+            } catch (IOException e) {
+                System.out.println("获取文件inputStream失败");
+                e.printStackTrace();
+            }
+            // 文件大小
+            long size = file.getSize();
+            // 文件类型
+            String end = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+
+            // 是否需要检查文件符合要求
+
+            ServletContext servletContext = session.getServletContext();
+            // 上传路径
+            String path = servletContext.getRealPath("/upload");
+            // 随机文件名
+            String name = UUIDUtils.getUUID();
 
             try {
-                FileUtils.uploadFile(file.getBytes(), filePath, fileName);
-                return JsonResult.success("上传成功," + fileName);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                return JsonResult.failure("上传失败," + e.getMessage());
+                // 上传路径文件
+                boolean flag = FtpUtils.uploadFile(FTP_ADDRESS,FTP_PORT,FTP_USERNAME,FTP_PASSWORD,FTP_PRODUCTION_IMAGE_BASEPATH,"/2018",name+end,inputStream);
+                System.out.println("ftp上传" + flag);
+                return JsonResult.success("上传成功," + name);
             } catch (Exception e) {
                 e.printStackTrace();
                 return JsonResult.failure("上传失败," + e.getMessage());
