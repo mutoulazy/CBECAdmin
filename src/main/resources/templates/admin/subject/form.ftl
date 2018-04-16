@@ -28,7 +28,7 @@
                     <h5>专业管理</h5>
                 </div>
                 <div class="ibox-content">
-                    <p>进行专业管理设置：</p>
+                    <p>进行专业管理设置</p>
                 </div>
             </div>
         </div>
@@ -76,8 +76,8 @@
                             <label class="col-sm-3 control-label">状态：</label>
                             <div class="col-sm-8">
                                 <select name="isHide" class="form-control">
-                                    <option value="0" <#if subject.locked == 0>selected="selected"</#if>>显示</option>
-                                    <option value="1" <#if subject.locked == 1>selected="selected"</#if>>隐藏</option>
+                                    <option value="0" <#if subject.isHide == 0>selected="selected"</#if>>显示</option>
+                                    <option value="1" <#if subject.isHide == 1>selected="selected"</#if>>隐藏</option>
                                 </select>
                             </div>
                         </div>
