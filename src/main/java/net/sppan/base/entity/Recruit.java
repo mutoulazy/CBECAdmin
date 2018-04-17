@@ -39,14 +39,34 @@ public class Recruit extends BaseEntity{
     private String review;
 
     /**
-     * 职位要求
+     * 审核状态 0发布 1审核审核通过 2审核不通过
      */
-    private String request;
+    private Integer status = 0;
+
+    /**
+     * 学历要求
+     */
+    private String education;
+
+    /**
+     * 经验要求
+     */
+    private String experience;
+
+    /**e
+     * 职位类型
+     */
+    private String type;
 
     /**
      * 招聘人数
      */
     private String peopleCount;
+
+    /**
+     * 申请人数
+     */
+    private Integer enrolment = 0;
 
     /**
      * 薪资
@@ -127,12 +147,36 @@ public class Recruit extends BaseEntity{
         this.review = review;
     }
 
-    public String getRequest() {
-        return request;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setRequest(String request) {
-        this.request = request;
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getPeopleCount() {
@@ -141,6 +185,14 @@ public class Recruit extends BaseEntity{
 
     public void setPeopleCount(String peopleCount) {
         this.peopleCount = peopleCount;
+    }
+
+    public Integer getEnrolment() {
+        return enrolment;
+    }
+
+    public void setEnrolment(Integer enrolment) {
+        this.enrolment = enrolment;
     }
 
     public String getPay() {

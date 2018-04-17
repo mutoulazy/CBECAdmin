@@ -47,7 +47,7 @@ public class Enterprise extends BaseEntity{
     /**
      * 人数
      */
-    private Integer peopleCount;
+    private String peopleCount;
 
     /**
      * 负责人
@@ -148,11 +148,11 @@ public class Enterprise extends BaseEntity{
         this.nature = nature;
     }
 
-    public Integer getPeopleCount() {
+    public String getPeopleCount() {
         return peopleCount;
     }
 
-    public void setPeopleCount(Integer peopleCount) {
+    public void setPeopleCount(String peopleCount) {
         this.peopleCount = peopleCount;
     }
 

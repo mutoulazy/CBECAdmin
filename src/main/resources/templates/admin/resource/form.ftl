@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title> - 表单验证 jQuery Validation</title>
+    <title> - 资源编辑</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 

@@ -36,9 +36,13 @@ public class RecruitServiceImpl extends BaseServiceImpl<Recruit, Integer> implem
             dbRecruit.setEndTime(recruit.getEndTime());
             dbRecruit.setName(recruit.getName());
             dbRecruit.setReview(recruit.getReview());
-            dbRecruit.setRequest(recruit.getRequest());
+            dbRecruit.setExperience(recruit.getExperience());
+            dbRecruit.setEducation(recruit.getEducation());
+            dbRecruit.setType(recruit.getType());
+            dbRecruit.setEnrolment(recruit.getEnrolment());
             dbRecruit.setPeopleCount(recruit.getPeopleCount());
             dbRecruit.setPay(recruit.getPay());
+            dbRecruit.setStatus(recruit.getStatus());
             dbRecruit.setAddress(recruit.getAddress());
             dbRecruit.setWelfare(recruit.getWelfare());
             dbRecruit.setIsHide(recruit.getIsHide());

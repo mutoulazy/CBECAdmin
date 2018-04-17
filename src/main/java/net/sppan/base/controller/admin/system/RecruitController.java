@@ -2,7 +2,9 @@ package net.sppan.base.controller.admin.system;
 
 import net.sppan.base.common.JsonResult;
 import net.sppan.base.controller.BaseController;
+import net.sppan.base.entity.Enterprise;
 import net.sppan.base.entity.Recruit;
+import net.sppan.base.service.IEnterpriseService;
 import net.sppan.base.service.IRecruitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +22,8 @@ import java.util.List;
 public class RecruitController extends BaseController{
     @Autowired
     private IRecruitService recruitService;
+    @Autowired
+    private IEnterpriseService enterpriseService;
 
 
     @RequestMapping("/index")
@@ -36,8 +40,10 @@ public class RecruitController extends BaseController{
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(ModelMap map) {
+        List<Enterprise> eList = enterpriseService.findAll();
         List<Recruit> list = recruitService.findAll();
-        map.put("list", list);
+        map.put("eList", eList);
+        map.put("list",list);
         return "admin/recruit/form";
     }
 
@@ -45,9 +51,10 @@ public class RecruitController extends BaseController{
     public String edit(@PathVariable Integer id, ModelMap map) {
         Recruit recruit = recruitService.find(id);
         map.put("recruit", recruit);
-
         List<Recruit> list = recruitService.findAll();
-        map.put("list", list);
+        List<Enterprise> eList = enterpriseService.findAll();
+        map.put("eList", eList);
+        map.put("list",list);
         return "admin/recruit/form";
     }
 

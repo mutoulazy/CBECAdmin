@@ -105,7 +105,7 @@
                                 <a class="J_menuItem" href="${ctx!}/admin/enterprise/index">机构信息管理</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="${ctx!}/admin/role/index">招聘计划</a>
+                                <a class="J_menuItem" href="${ctx!}/admin/recruit/index">招聘计划</a>
                             </li>
                             <li>
                                 <a class="J_menuItem" href="${ctx!}/admin/role/index">招聘计划审核</a>
