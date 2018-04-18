@@ -193,42 +193,26 @@
                 name: {
                     required: true,
                     minlength: 4,
-                    maxlength: 20
+                    maxlength: 30
                 },
-                sourceKey: {
+                peopleCount: {
                     required: true,
-                    minlength: 4,
-                    maxlength: 40
                 },
-                type: {
+                pay: {
                     required: true
-                },
-                sourceUrl: {
-                    required: true
-                },
-                level: {
-                    required: true,
-                    number:true
-                },
-                sort: {
-                    number:true,
-                    required: true
-                },
-                icon: {
-                    maxlength: 40
                 },
                 isHide: {
                     required: true
                 },
                 description: {
                     required: true,
-                    maxlength: 40
                 }
             },
             messages: {},
             submitHandler:function(form){
                 /*使富文本编辑框内容可以修改*/
                 CKupdate();
+
                 $.ajax({
                     type: "POST",
                     dataType: "json",

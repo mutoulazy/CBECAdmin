@@ -6,6 +6,7 @@ import net.sppan.base.entity.Enterprise;
 import net.sppan.base.entity.Recruit;
 import net.sppan.base.service.IEnterpriseService;
 import net.sppan.base.service.IRecruitService;
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,11 @@ public class RecruitController extends BaseController{
     @RequestMapping("/index")
     public String index() {
         return "admin/recruit/index";
+    }
+
+    @RequestMapping("/auditList")
+    public String auditList() {
+        return "admin/recruit/auditList";
     }
 
     @RequestMapping("list")
@@ -56,6 +62,32 @@ public class RecruitController extends BaseController{
         map.put("eList", eList);
         map.put("list",list);
         return "admin/recruit/form";
+    }
+
+    @RequestMapping(value = "/audit/{id}", method = RequestMethod.GET)
+    public String audit(@PathVariable Integer id, ModelMap map) {
+        Recruit recruit = recruitService.find(id);
+        map.put("recruit", recruit);
+        return "admin/recruit/audit";
+    }
+
+    @RequestMapping(value= {"/audit"}, method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult audit(HttpServletRequest request,  ModelMap map){
+        String id = request.getParameter("id");
+        String status = request.getParameter("status");
+        String review = request.getParameter("review");
+
+        Recruit recruit = recruitService.find(Integer.valueOf(id));
+        // 进行审核信息绑定
+        recruit.setStatus(Integer.valueOf(status));
+        recruit.setReview(review);
+        try {
+            recruitService.saveOrUpdate(recruit);
+        } catch (Exception e) {
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
     }
 
     @RequestMapping(value= {"/edit"}, method = RequestMethod.POST)

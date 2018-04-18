@@ -108,7 +108,7 @@
                                 <a class="J_menuItem" href="${ctx!}/admin/recruit/index">招聘计划</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="${ctx!}/admin/role/index">招聘计划审核</a>
+                                <a class="J_menuItem" href="${ctx!}/admin/recruit/auditList">招聘计划审核</a>
                             </li>
                         </ul>
                     </li>
