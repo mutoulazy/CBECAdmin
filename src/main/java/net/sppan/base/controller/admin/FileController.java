@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sound.midi.SoundbankResource;
 import java.io.*;
@@ -36,6 +37,10 @@ public class FileController extends BaseController {
     private String FTP_PASSWORD;
     @Value("${FTP_PRODUCTION_IMAGE_BASEPATH}")
     private String FTP_PRODUCTION_IMAGE_BASEPATH;
+    @Value("${FTP_RESOURCES_FILE_BASEPATH}")
+    private String FTP_RESOURCES_FILE_BASEPATH;
+    @Value("${NGINX_PRODUCTION_NASEPATH}")
+    private String NGINX_PRODUCTION_NASEPATH;
 
     @RequestMapping("/uploadTest")
     public String test(){
@@ -43,7 +48,7 @@ public class FileController extends BaseController {
     }
 
     /**
-     * 单文件上传
+     * 图片文件上传
      *
      * @param file
      * @param request
@@ -51,7 +56,7 @@ public class FileController extends BaseController {
      */
     @PostMapping("/upload")
     @ResponseBody
-    public JsonResult upload(@RequestParam("upload") MultipartFile file, String CKEditorFuncNum, HttpServletRequest request, HttpSession session) {
+    public JsonResult upload(@RequestParam("imageFile") MultipartFile file, HttpServletRequest request, HttpSession session) {
         if (!file.isEmpty()) {
             // 上传时的文件名
             String fileName = file.getOriginalFilename();
@@ -66,6 +71,7 @@ public class FileController extends BaseController {
             long size = file.getSize();
             // 文件类型
             String end = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+            //String start = fileName.substring(0, fileName.lastIndexOf("."));
 
             // 是否需要检查文件符合要求
 
@@ -75,11 +81,13 @@ public class FileController extends BaseController {
             // 随机文件名
             String name = UUIDUtils.getUUID();
 
+            String returnName = name + end;
+            String filePath = NGINX_PRODUCTION_NASEPATH  + returnName;
             try {
                 // 上传路径文件
                 boolean flag = FtpUtils.uploadFile(FTP_ADDRESS,FTP_PORT,FTP_USERNAME,FTP_PASSWORD,FTP_PRODUCTION_IMAGE_BASEPATH,"/2018",name+end,inputStream);
                 System.out.println("ftp上传" + flag);
-                return JsonResult.success("上传成功," + name);
+                return JsonResult.success(returnName, filePath);
             } catch (Exception e) {
                 e.printStackTrace();
                 return JsonResult.failure("上传失败," + e.getMessage());
@@ -90,7 +98,72 @@ public class FileController extends BaseController {
     }
 
     /**
-     * 单文件上传
+     * 资源文件上传
+     *
+     * @param file
+     * @param request
+     * @return
+     */
+    @PostMapping("/uploadFile")
+    @ResponseBody
+    public JsonResult uploadFile(@RequestParam("resourceFile") MultipartFile file, HttpServletRequest request, HttpSession session) {
+        if (!file.isEmpty()) {
+            String fileName = file.getOriginalFilename();
+            InputStream inputStream = null;
+            try {
+                inputStream = file.getInputStream();
+            } catch (IOException e) {
+                System.out.println("获取文件inputStream失败");
+                e.printStackTrace();
+            }
+            // 文件大小
+            long size = file.getSize();
+            // 文件类型
+            String end = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+            //String start = fileName.substring(0, fileName.lastIndexOf("."));
+
+
+            ServletContext servletContext = session.getServletContext();
+            // 上传路径
+            String path = servletContext.getRealPath("/upload");
+            // 随机文件名
+            String name = UUIDUtils.getUUID();
+
+            String returnName = name + end;
+            try {
+                // 上传路径文件
+                boolean flag = FtpUtils.uploadFile(FTP_ADDRESS,FTP_PORT,FTP_USERNAME,FTP_PASSWORD,FTP_RESOURCES_FILE_BASEPATH,"/2018",name+end,inputStream);
+                System.out.println("ftp上传" + flag);
+                return JsonResult.success(returnName);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return JsonResult.failure("上传失败," + e.getMessage());
+            }
+        } else {
+            return JsonResult.failure("上传失败，因为文件为空.");
+        }
+    }
+
+    /**
+     * 文件下载
+     * @param fileName
+     * @param session
+     * @param response
+     * @throws Exception
+     */
+    @RequestMapping("/download")
+    public void download(@RequestParam("fileName")String fileName, HttpSession session, HttpServletResponse response) throws Exception {
+        if (fileName != null) {
+            String path = session.getServletContext().getRealPath("/upload/res");
+            //获取ftp服务器文件的input值
+            InputStream inputStream = FtpUtils.downloadFile(FTP_ADDRESS,FTP_PORT,FTP_USERNAME,FTP_PASSWORD,FTP_RESOURCES_FILE_BASEPATH+"/2018",fileName);
+            //下载
+            FtpUtils.downloadFile(fileName,inputStream,response);
+        }
+    }
+
+    /**
+     * 富文本图片上传到服务器
      *
      * @param file
      * @param request

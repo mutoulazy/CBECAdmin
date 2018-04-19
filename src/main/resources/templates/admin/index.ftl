@@ -121,7 +121,7 @@
                         </a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a class="J_menuItem" href="${ctx!}/admin/subject/index">科研成果分享</a>
+                                <a class="J_menuItem" href="${ctx!}/admin/achievement/index">科研成果分享</a>
                             </li>
                         </ul>
                     </li>

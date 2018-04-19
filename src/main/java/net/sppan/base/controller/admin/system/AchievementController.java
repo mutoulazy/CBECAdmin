@@ -3,7 +3,9 @@ package net.sppan.base.controller.admin.system;
 import net.sppan.base.common.JsonResult;
 import net.sppan.base.controller.BaseController;
 import net.sppan.base.entity.Achievement;
+import net.sppan.base.entity.Enterprise;
 import net.sppan.base.service.IAchievementService;
+import net.sppan.base.service.IEnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,8 @@ import java.util.List;
 public class AchievementController extends BaseController{
     @Autowired
     private IAchievementService achievementService;
+    @Autowired
+    private IEnterpriseService enterpriseService;
 
     @RequestMapping("/index")
     public String index() {
@@ -36,7 +40,9 @@ public class AchievementController extends BaseController{
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String add(ModelMap map) {
         List<Achievement> list = achievementService.findAll();
+        List<Enterprise> eList = enterpriseService.findAll();
         map.put("list", list);
+        map.put("eList", eList);
         return "admin/achievement/form";
     }
 
@@ -45,8 +51,10 @@ public class AchievementController extends BaseController{
         Achievement achievement = achievementService.find(id);
         map.put("achievement", achievement);
 
+        List<Enterprise> eList = enterpriseService.findAll();
         List<Achievement> list = achievementService.findAll();
         map.put("list", list);
+        map.put("eList", eList);
         return "admin/achievement/form";
     }
 
