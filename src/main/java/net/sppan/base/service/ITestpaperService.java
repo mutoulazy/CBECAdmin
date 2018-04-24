@@ -16,6 +16,13 @@ public interface ITestpaperService extends IBaseService<Testpaper, Integer>{
     void saveOrUpdate(Testpaper testpaper);
 
     /**
+     * 给角试卷配题目
+     * @param id 试卷ID
+     * @param questionIds 题目ids
+     */
+    void grant(Integer id, String[] questionIds);
+
+    /**
      * 关键字分页
      * @param searchText
      * @param pageRequest

@@ -61,6 +61,26 @@ public class TestpaperController extends BaseController{
         return JsonResult.success();
     }
 
+    @RequestMapping(value = "/grant/{id}", method = RequestMethod.GET)
+    public String grant(@PathVariable Integer id, ModelMap map) {
+        Testpaper testpaper = testpaperService.find(id);
+        map.put("testpaper", testpaper);
+        return "admin/testpaper/grant";
+    }
+
+    @RequestMapping(value = "/grant/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult grant(@PathVariable Integer id,
+                            @RequestParam(required = false) String[] questionIds, ModelMap map) {
+        try {
+            testpaperService.grant(id,questionIds);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JsonResult.failure(e.getMessage());
+        }
+        return JsonResult.success();
+    }
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete(@PathVariable Integer id,ModelMap map) {

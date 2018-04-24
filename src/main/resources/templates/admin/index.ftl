@@ -97,6 +97,25 @@
                     <li>
                         <a href="#">
                             <i class="fa fa fa-cog"></i>
+                            <span class="nav-label">考试管理</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/questionBank/index">题目管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/testpaper/index">试卷管理</a>
+                            </li>
+                            <li>
+                                <a class="J_menuItem" href="${ctx!}/admin/role/index">成绩查看</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="fa fa fa-cog"></i>
                             <span class="nav-label">招聘管理</span>
                             <span class="fa arrow"></span>
                         </a>

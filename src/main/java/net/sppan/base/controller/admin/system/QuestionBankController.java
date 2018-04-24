@@ -4,6 +4,7 @@ import net.sppan.base.common.JsonResult;
 import net.sppan.base.controller.BaseController;
 import net.sppan.base.entity.QuestionBank;
 import net.sppan.base.service.IQuestionBankService;
+import net.sppan.base.vo.ZtreeView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,13 @@ public class QuestionBankController extends BaseController{
     public Page<QuestionBank> list(@RequestParam(value="searchText",required=false) String searchText){
         Page<QuestionBank> page = questionBankService.findAllByLike(searchText, getPageRequest());
         return page;
+    }
+
+    @RequestMapping("/tree/{questionId}")
+    @ResponseBody
+    public List<ZtreeView> tree(@PathVariable Integer questionId){
+        List<ZtreeView> list = questionBankService.tree(questionId);
+        return list;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
