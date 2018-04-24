@@ -36,7 +36,6 @@ public class ResourceServiceImpl extends BaseServiceImpl<Resource, Integer>
 
 	@Autowired
 	private IResourceDao resourceDao;
-
 	@Autowired
 	private IRoleService roleService;
 

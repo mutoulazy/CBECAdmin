@@ -49,8 +49,8 @@ public class Testpaper extends BaseEntity{
     private Date updateTime;
 
     @ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
-    @JoinTable(name = "tb_question_bank", joinColumns = { @JoinColumn(name = "paper_id") }, inverseJoinColumns = { @JoinColumn(name = "question_id") })
-    private java.util.Set<QuestionBank> questionBanks;
+    @JoinTable(name = "tb_testpaper_bank", joinColumns = { @JoinColumn(name = "paper_id") }, inverseJoinColumns = { @JoinColumn(name = "question_id") })
+    private Set<QuestionBank> questionBanks;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

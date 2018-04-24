@@ -45,14 +45,14 @@ public class UserScore extends BaseEntity{
      * 关联用户
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "enterprise_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     /**
      * 关联试卷
      */
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "enterprise_id")
+    @JoinColumn(name = "testpaper_id")
     private Testpaper testpaper;
 
     public static long getSerialVersionUID() {
