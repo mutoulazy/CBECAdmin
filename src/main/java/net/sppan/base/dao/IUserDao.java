@@ -14,4 +14,6 @@ public interface IUserDao extends IBaseDao<User, Integer> {
 
 	Page<User> findAllByNickNameContaining(String searchText, Pageable pageable);
 
+
+
 }
