@@ -70,6 +70,10 @@ public class QuestionBank extends BaseEntity{
      */
     private String description;
 
+    /**
+     * 答案正确标识符
+     */
+    private boolean correct;
 
     /**
      * 创建时间
@@ -182,5 +186,13 @@ public class QuestionBank extends BaseEntity{
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public boolean isCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
     }
 }

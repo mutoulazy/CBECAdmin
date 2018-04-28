@@ -13,7 +13,7 @@
 </head>
 <style>
     #back{
-        background: url(/static/img/back3.png) ;
+        background: url(${ctx!}/assets/img/back3.png) ;
         background-size: 100%;
         background-attachment: fixed;
         padding-bottom:4%;
@@ -127,7 +127,7 @@
     });
 
     function select(id) {
-        window.location="/exam/exam-"+id+".html";
+        window.location="/exam/exam-"+id;
     };
 
     /* function select(id) {

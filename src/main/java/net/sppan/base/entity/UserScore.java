@@ -20,13 +20,18 @@ public class UserScore extends BaseEntity{
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = true)
     private Integer id;
 
     /**
      * 成绩名称
      */
     private String name;
+
+    /**
+     * 分数
+     */
+    private String score;
 
     /**
      * 是否隐藏
@@ -54,6 +59,7 @@ public class UserScore extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "testpaper_id")
     private Testpaper testpaper;
+
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -105,5 +111,13 @@ public class UserScore extends BaseEntity{
 
     public void setTestpaper(Testpaper testpaper) {
         this.testpaper = testpaper;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
     }
 }

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.sppan.base.mapper.TbUserScoreMapper" >
+  <resultMap id="BaseResultMap" type="net.sppan.base.entity.UserScore" >
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_hide" jdbcType="INTEGER" property="isHide" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="testpaper_id" jdbcType="INTEGER" property="testpaper.id" />
+    <result column="user_id" jdbcType="INTEGER" property="user.id" />
+    <result column="score" jdbcType="VARCHAR" property="score" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, is_hide, name, testpaper_id, user_id, score
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user_score
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByTestpaperIdAndUserId" resultMap="BaseResultMap" parameterType="net.sppan.base.entity.UserScore" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_user_score
+    where user_id = #{user.id,jdbcType=INTEGER} and testpaper_id = #{testpaper.id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_user_score
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.sppan.base.entity.UserScore" >
+    insert into tb_user_score (id, create_time, is_hide, 
+      name, testpaper_id, user_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{isHide,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{testpaperId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.sppan.base.entity.UserScore" >
+    insert into tb_user_score
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isHide != null" >
+        is_hide,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="testpaperId != null" >
+        testpaper_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isHide != null" >
+        #{isHide,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="testpaperId != null" >
+        #{testpaperId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.sppan.base.entity.UserScore" >
+    update tb_user_score
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isHide != null" >
+        is_hide = #{isHide,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="testpaperId != null" >
+        testpaper_id = #{testpaperId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.sppan.base.entity.UserScore" >
+    update tb_user_score
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_hide = #{isHide,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      testpaper_id = #{testpaperId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

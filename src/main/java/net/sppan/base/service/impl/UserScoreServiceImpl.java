@@ -33,6 +33,7 @@ public class UserScoreServiceImpl extends BaseServiceImpl<UserScore, Integer> im
             dbUserScore.setIsHide(userScore.getIsHide());
             dbUserScore.setName(userScore.getName());
             dbUserScore.setUser(userScore.getUser());
+            dbUserScore.setScore(userScore.getScore());
             dbUserScore.setTestpaper(userScore.getTestpaper());
             update(dbUserScore);
         }else{

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.sppan.base.mapper.TbQuestionBankMapper">
+  <resultMap id="BaseResultMap" type="net.sppan.base.entity.QuestionBank">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="answer" jdbcType="VARCHAR" property="answer" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="is_hide" jdbcType="INTEGER" property="isHide" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="option1" jdbcType="VARCHAR" property="option1" />
+    <result column="option2" jdbcType="VARCHAR" property="option2" />
+    <result column="option3" jdbcType="VARCHAR" property="option3" />
+    <result column="option4" jdbcType="VARCHAR" property="option4" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+
+  <select id="selectByTestPaperIdAndType"  resultMap="BaseResultMap">
+    select
+    a.id, a.name, a.answer, a.description, a.type, a.option1, a.option2, a.option3, a.option4
+    from tb_question_bank a, tb_testpaper b, tb_testpaper_bank c
+    where b.id = #{testpaperId} and c.paper_id = b.id and c.question_id = a.id and a.type = #{type}
+  </select>
+
+</mapper>

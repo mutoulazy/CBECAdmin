@@ -49,6 +49,7 @@ public class QuestionBankServiceImpl extends BaseServiceImpl<QuestionBank, Integ
             dbQuestionBank.setOption3(questionBank.getOption3());
             dbQuestionBank.setOption4(questionBank.getOption4());
             dbQuestionBank.setAnswer(questionBank.getAnswer());
+            dbQuestionBank.setCorrect(questionBank.isCorrect());
             dbQuestionBank.setDescription(questionBank.getDescription());
             update(dbQuestionBank);
         }else{
