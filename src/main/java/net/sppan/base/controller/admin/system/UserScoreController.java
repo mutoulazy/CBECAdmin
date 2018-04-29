@@ -17,7 +17,7 @@ import java.util.List;
  * Created by mutoulazy on 2018/4/23.
  */
 @Controller
-@Repository("/admin/userScore")
+@RequestMapping("/admin/userScore")
 public class UserScoreController extends BaseController{
     @Autowired
     private IUserScoreService userScoreService;
@@ -34,12 +34,7 @@ public class UserScoreController extends BaseController{
         return page;
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add(ModelMap map) {
-        List<UserScore> list = userScoreService.findAll();
-        map.put("list", list);
-        return "admin/userScore/form";
-    }
+
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String edit(@PathVariable Integer id, ModelMap map) {

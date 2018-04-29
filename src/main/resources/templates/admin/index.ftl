@@ -108,7 +108,7 @@
                                 <a class="J_menuItem" href="${ctx!}/admin/testpaper/index">试卷管理</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="${ctx!}/admin/role/index">成绩查看</a>
+                                <a class="J_menuItem" href="${ctx!}/admin/userScore/index">成绩查看</a>
                             </li>
                         </ul>
                     </li>

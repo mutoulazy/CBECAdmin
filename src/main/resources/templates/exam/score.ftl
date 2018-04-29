@@ -55,7 +55,7 @@
 <!--js-->
 <script type="text/javascript" src="${ctx!}/assets/js/jquery.min.js" ></script>
 <script type="text/javascript" src="${ctx!}/assets/js/bootstrap.min.js" ></script>
-<script type="text/javascript" src="${ctx!}/assets/js/icheck.min.js" ></script>
+<script type="text/javascript" src="${ctx!}/assets/js/icheck.js" ></script>
 <script type="text/javascript" src="${ctx!}/assets/js/common.js"></script>
 <script type="text/javascript" src="${ctx!}/assets/skins/remodal-1.1.0/remodal.js"></script>
 

@@ -94,12 +94,15 @@ public class ExamServiceImpl implements IExamService{
             }
         }
         UserScore userScore = new UserScore();
-        userScore.setTestpaper(testpaperDao.findOne(Integer.valueOf(session.getAttribute("testpaperId").toString())));
+        Testpaper testpaper = testpaperDao.findOne(Integer.valueOf(session.getAttribute("testpaperId").toString()));
+        userScore.setTestpaper(testpaper);
         Subject subject = SecurityUtils.getSubject();
         Object principal = subject.getPrincipal();
         if(principal== null){
             System.out.println("未进行登陆");
         }
+        userScore.setIsHide(0);
+        userScore.setName(testpaper.getName());
         userScore.setUser((User) principal);
         userScore.setScore(String.valueOf(score));
         userScoreService.saveOrUpdate(userScore);

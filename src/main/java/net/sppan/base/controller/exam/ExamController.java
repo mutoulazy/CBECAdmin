@@ -55,7 +55,7 @@ public class ExamController extends BaseController{
     @ResponseBody
     @RequestMapping(value = "/submitpapers", method = RequestMethod.POST)
     public List<QuestionBank> submitPapers(@RequestBody List<QuestionBank> questionBankVos, HttpSession session) {
-
+        System.out.println("questionBankVos: " + questionBankVos);
         List<QuestionBank> judgmentSystem = examService.judgmentSystem(questionBankVos, session);
 
         return judgmentSystem;

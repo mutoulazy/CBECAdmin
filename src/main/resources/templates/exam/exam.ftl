@@ -138,7 +138,7 @@
 <!--js-->
 <script type="text/javascript" src="${ctx!}/assets/js/jquery.min.js" ></script>
 <script type="text/javascript" src="${ctx!}/assets/js/bootstrap.min.js" ></script>
-<script type="text/javascript" src="${ctx!}/assets/js/icheck.min.js" ></script>
+<script type="text/javascript" src="${ctx!}/assets/js/icheck.js" ></script>
 <script type="text/javascript" src="${ctx!}/assets/js/common.js"></script>
 <script type="text/javascript" src="${ctx!}/assets/skins/remodal-1.1.0/remodal.js"></script>
 
@@ -173,16 +173,16 @@
                         inst.open();
                         console.log(e);
                         if(e.correct) {
-                            $(".success-"+e.questionBankId).removeClass("hidden");
+                            $(".success-"+e.id).removeClass("hidden");
                         } else {
-                            $(".danger-"+e.questionBankId).removeClass("hidden");
+                            $(".danger-"+e.id).removeClass("hidden");
                             if(e.answer == '是') {
                                 e.answer = "错";
                             }
                             if(e.answer == '否') {
                                 e.answer = "对";
                             }
-                            $(".danger-"+e.questionBankId+" span").text(e.answer);
+                            $(".danger-"+e.id+" span").text(e.answer);
                         }
                     })
 
@@ -199,14 +199,14 @@
     <#list JudgmentQuestion as item>
         var item${item.id} = $('input[name="${item.id}"]:checked ');
         arr.push({
-            'questionBankId': $('input[name="${item.id}"]').attr('name'),
+            'id': $('input[name="${item.id}"]').attr('name'),
             'answer': item${item.id}.val()
         });
     </#list>
     <#list ChoiceQuestion as item>
         var item${item.id} = $('input[name="${item.id}"]:checked ');
         arr.push({
-            'questionBankId': $('input[name="${item.id}"]').attr('name'),
+            'id': $('input[name="${item.id}"]').attr('name'),
             'answer': item${item.id}.val()
         });
     </#list>
