@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title> - 成果展示</title>
+    <title> - 课程展示</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
@@ -16,7 +16,7 @@
     <link href="${ctx!}/assets/css/font-awesome.css?v=4.4.0" rel="stylesheet">
     <link href="${ctx!}/assets/css/animate.css" rel="stylesheet">
     <link href="${ctx!}/assets/css/style.css?v=4.1.0" rel="stylesheet">
-
+    <link href="${ctx!}/assets/css/video-js.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body class="gray-bg">
@@ -25,10 +25,10 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>成果信息管理</h5>
+                    <h5>课程信息管理</h5>
                 </div>
                 <div class="ibox-content">
-                    <p>进行成果设置：</p>
+                    <p>进行课程设置：</p>
                 </div>
             </div>
         </div>
@@ -37,17 +37,17 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>成果编辑</h5>
+                    <h5>课程编辑</h5>
                 </div>
                 <div class="ibox-content">
-                    <form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/achievement/edit">
-                        <input type="hidden" id="id" name="id" value="${achievement.id}">
+                    <form class="form-horizontal m-t" id="frm" method="post" action="${ctx!}/admin/course/edit">
+                        <input type="hidden" id="id" name="id" value="${course.id}">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">发布单位：</label>
+                            <label class="col-sm-3 control-label">所属专业：</label>
                             <div class="col-sm-8">
-                                <select name="enterprise.id" class="form-control">
+                                <select name="subject.id" class="form-control">
                                 <#list eList as r>
-                                    <option value="${r.id}" <#if achievement.enterprise.id == r.id>selected="selected"</#if>>
+                                    <option value="${r.id}" <#if course.subject.id == r.id>selected="selected"</#if>>
                                     ${r.name}
                                     </option>
                                 </#list>
@@ -57,53 +57,77 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">标题：</label>
                             <div class="col-sm-8">
-                                <input id="name" name="name" class="form-control" type="text" value="${achievement.name}">
+                                <input id="name" name="name" class="form-control" type="text" value="${course.name}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">负责教师：</label>
+                            <div class="col-sm-8">
+                                <input id="teacher" name="teacher" class="form-control" type="text" value="${course.teacher}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">显示图片：</label>
                             <div class="col-sm-8">
-                                <#if achievement.image?exists>
-                                    <img id="eImg" src="${achievement.image}" style="width: 200px; height:  200px;" alt="" class="backimg">
-                                <#else>
-                                    <img id="eImg" src="${ctx!}/assets/img/default.jpg" style="width: 200px; height:  200px;" alt="" class="backimg">
-                                </#if>
+                            <#if course.image?exists>
+                                <img id="eImg" src="${course.image}" style="width: 200px; height:  200px;" alt="" class="backimg">
+                            <#else>
+                                <img id="eImg" src="${ctx!}/assets/img/default.jpg" style="width: 200px; height:  200px;" alt="" class="backimg">
+                            </#if>
                                 <input id="imageFile" type="file" name="imageFile" size="80"/>
                                 <button id="saveImg"  type="button">上传图片</button>
-                                <input type="hidden" id="image" name="image" value="${achievement.image}">
+                                <input type="hidden" id="image" name="image" value="${course.image}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">状态：</label>
                             <div class="col-sm-8">
                                 <select name="isHide" class="form-control">
-                                    <option value="0" <#if achievement.isHide == 0>selected="selected"</#if>>显示</option>
-                                    <option value="1" <#if achievement.isHide == 1>selected="selected"</#if>>隐藏</option>
+                                    <option value="0" <#if course.isHide == 0>selected="selected"</#if>>显示</option>
+                                    <option value="1" <#if course.isHide == 1>selected="selected"</#if>>隐藏</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">成果简介：</label>
+                            <label class="col-sm-3 control-label">是否推荐：</label>
                             <div class="col-sm-8">
-                                <textarea id="introduction" name="introduction" class="form-control" type="text">${achievement.introduction}</textarea>
+                                <select name="isRecommend" class="form-control">
+                                    <option value="0" <#if course.isRecommend == 0>selected="selected"</#if>>不推荐</option>
+                                    <option value="1" <#if course.isRecommend == 1>selected="selected"</#if>>推荐</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">学习目标：</label>
+                            <div class="col-sm-8">
+                                <textarea id="aim" name="aim" class="form-control" type="text">${course.aim}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">描述：</label>
                             <div class="col-sm-8">
                             <#--文本编辑器的位置-->
-                                <textarea id="description" name="description" class="form-control" type="text">${achievement.description}</textarea>
+                                <textarea id="description" name="description" class="form-control" type="text">${course.description}</textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">成果附件：</label>
+                            <label class="col-sm-3 control-label">视频文件：</label>
                             <div class="col-sm-8">
                                 <input id="resourceFile" type="file" name="resourceFile" size="80"/>
-                                <button id="saveFile"  type="button">上传文件</button>
-                                <input type="hidden" id="resource" name="resource" value="${achievement.resource}">
-                                <#if achievement.resource?exists>
-                                    <a href="${ctx}/file/download?fileName=${achievement.resource}">下载文件</a>
-                                </#if>
+                                <button id="saveFile"  type="button">上传视频</button>
+                                <input type="hidden" id="videoUrl" name="videoUrl" value="${course.videoUrl}">
+                            <#if course.videoUrl?exists>
+                                <#--<a href="${ctx}/file/download?fileName=${course.videoUrl}">下载文件</a>-->
+                                <div>
+                                    <video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="400" height="300"
+                                           poster="http://video-js.zencoder.com/oceans-clip.png"
+                                           data-setup="{}">
+                                        <source src="${ctx}/file/download?fileName=${course.videoUrl}" type='video/mp4' />
+                                        <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                                        <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                                    </video>
+                                </div>
+                            </#if>
                             </div>
                         </div>
                         <div class="form-group">
@@ -155,6 +179,7 @@
                     },
                     error: function (data, status, e)//服务器响应失败处理函数
                     {
+                        alert("上传图片失败");
                         alert(e);
                     }
                 }
@@ -176,12 +201,14 @@
                     {
                         var obj = JSON.parse(data);
                         var str = obj.message;
-                        $("#resource").attr("value", str);
-                        var test = $("#resource").attr("value");
-                        alert("上传文件成功");
+                        $("#videoUrl").attr("value", str);
+                        var test = $("#videoUrl").attr("value");
+                        console.log("str" + str);
+                        alert("上传视频成功");
                     },
                     error: function (data, status, e)//服务器响应失败处理函数
                     {
+                        alert("上传视频失败");
                         alert(e);
                     }
                 }
@@ -205,6 +232,10 @@
 <script src="${ctx!}/assets/js/plugins/validate/messages_zh.min.js"></script>
 <script src="${ctx!}/assets/js/plugins/layer/layer.min.js"></script>
 <script src="${ctx!}/assets/js/plugins/layer/laydate/laydate.js"></script>
+<#-- 视频播放 -->
+<script type="text/javascript" src="/assets/js/video.min.js"></script>
+<script type="text/javascript" src="/assets/js/video-js.swf"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         /**
@@ -268,7 +299,7 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "${ctx!}/admin/achievement/edit",
+                    url: "${ctx!}/admin/course/edit",
                     data: $(form).serialize(),
                     success: function(msg){
                         layer.msg(msg.message, {time: 2000},function(){

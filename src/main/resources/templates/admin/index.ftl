@@ -89,7 +89,7 @@
                                 <a class="J_menuItem" href="${ctx!}/admin/subject/index">专业管理</a>
                             </li>
                             <li>
-                                <a class="J_menuItem" href="${ctx!}/admin/role/index">课程管理</a>
+                                <a class="J_menuItem" href="${ctx!}/admin/course/index">课程管理</a>
                             </li>
                         </ul>
                     </li>
