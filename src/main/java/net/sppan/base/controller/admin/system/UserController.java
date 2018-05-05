@@ -42,12 +42,6 @@ public class UserController extends BaseController {
 	public Page<User> list(
 			@RequestParam(value="searchText",required=false) String searchText
 			) {
-//		SimpleSpecificationBuilder<User> builder = new SimpleSpecificationBuilder<User>();
-//		String searchText = request.getParameter("searchText");
-//		if(StringUtils.isNotBlank(searchText)){
-//			builder.add("nickName", Operator.likeAll.name(), searchText);
-//		}
-		
 		Page<User> page = userService.findAllByLike(searchText, getPageRequest());
 		return page;
 	}
