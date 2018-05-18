@@ -46,8 +46,8 @@
                             <label class="col-sm-3 control-label">题目类型：</label>
                             <div class="col-sm-8">
                                 <select name="type" class="form-control">
-                                    <option value="1" <#if questionBank.isHide == 1>selected="selected"</#if>>单选题</option>
-                                    <option value="2" <#if questionBank.isHide == 2>selected="selected"</#if>>判断题</option>
+                                    <option value="1" <#if questionBank.type == 1>selected="selected"</#if>>单选题</option>
+                                    <option value="2" <#if questionBank.type == 2>selected="selected"</#if>>判断题</option>
                                 </select>
                             </div>
                         </div>

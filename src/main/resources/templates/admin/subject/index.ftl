@@ -116,7 +116,7 @@
                     field: "id",
                     sortable: true
                 },{
-                    title: "资源名称",
+                    title: "专业名称",
                     field: "name"
                 },{
                     title: "层级",

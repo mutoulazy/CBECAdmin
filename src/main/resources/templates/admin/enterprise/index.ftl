@@ -163,7 +163,7 @@
     function edit(id){
         layer.open({
             type: 2,
-            title: '专业修改',
+            title: '机构修改',
             shadeClose: true,
             shade: false,
             area: ['893px', '600px'],

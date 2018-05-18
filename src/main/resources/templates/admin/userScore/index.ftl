@@ -117,7 +117,7 @@
                 sortable: true
             },{
                 title: "试卷名",
-                field: "name"
+                field: "testpaper.name"
             },{
                 title: "状态",
                 sortable: true,
@@ -129,7 +129,7 @@
                         return '<span class="label label-danger">隐藏</span>';
                 }
             },{
-                title: "成绩",
+                title: "成绩（正确题数）",
                 field: "score"
             },{
                 title: "考生",

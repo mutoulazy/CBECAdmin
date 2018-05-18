@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>编辑专业</title>
+    <title>编辑机构</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 

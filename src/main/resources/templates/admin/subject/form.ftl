@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">层级：</label>
                             <div class="col-sm-8">
-                                <input id="level" name="level" class="form-control" value="${subject.level}" placeholder="目录：1，菜单：2，按钮：3">
+                                <input id="level" name="level" class="form-control" value="${subject.level}">
                             </div>
                         </div>
                         <div class="form-group">
